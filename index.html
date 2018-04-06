@@ -9,12 +9,13 @@
 </head>
 <body>
 <div class="app">
-    {{ message }}
-    <line-chart></line-chart>
+    <line-chart :chart-data="datacollection"></line-chart>
+    <button @click="fillData()">Aléatoire</button>
+    {{datacollection}}
+
 </div>
 
 <script>
-
     Vue.component('line-chart', {
         extends: VueChartJs.Line,
         mixins: [VueChartJs.mixins.reactiveProp],
@@ -23,14 +24,34 @@
             this.renderChart(this.chartData, this.options)
         }
     })
-
     var vm = new Vue({
         el: '.app',
-        data: {
-            message: 'Hello World'
+        data () {
+            return {
+                datacollection: null
+            }
+        },
+        mounted () {
+            this.fillData()
+        },
+        methods: {
+            fillData () {
+                this.datacollection = {
+                    labels: [this.getRandomInt(), this.getRandomInt()],
+                    datasets: [
+                        {
+                            label: 'Data One',
+                            backgroundColor: '#f87979',
+                            data: [this.getRandomInt(), this.getRandomInt()]
+                        }
+                    ]
+                }
+            },
+            getRandomInt () {
+                return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+            }
         }
     })
-
 </script>
 </body>
 </html>

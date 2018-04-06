@@ -9,8 +9,8 @@
 </head>
 <body>
 <div class="app">
-<line-chart :chart-data="files"></line-chart>
-        <input v-model="datacollection"  v-on:change="fillData()">Aléatoire</input> <!-- Debut de piste ! -->
+    <input type="text" v-model="datacollection" ref="myFiles" id="file"  class="custom-file-input"
+           @change="fillData()" >
     {{datacollection}}
 </div>
 
@@ -23,6 +23,8 @@
         props: ['chartData', 'options'],
         mounted () {
             this.renderChart(this.chartData, this.options)
+            console.log(this.datacollection)
+
         }
     })
 
@@ -35,7 +37,6 @@
         data () {
             return {
                 datacollection: null,
-                files: null,
             }
         },
         mounted () {
@@ -43,23 +44,16 @@
         },
         methods: {
             fillData () {
-
-console.log('ok')
-                this.files = {
+                this.datacollection = {
                     labels: [this.getRandomInt(), this.getRandomInt()],
                     datasets: [
-                         {
+                        {
                             label: 'Data One',
                             backgroundColor: '#f87979',
                             data: [this.getRandomInt(), this.getRandomInt()]
                         }
                     ]
                 }
-            },
-            getRandomInt () {
-                this.datacollection
-
-                console.log(datacollection)
             }
         }
     })
