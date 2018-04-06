@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+</head>
+<body>
+<div class="app">
+<line-chart :chart-data="datacollection"></line-chart>
+        <button @click="fillData()">Aléatoire</button>
+</div>
+
+<script>
+
+
+    Vue.component('line-chart', {
+        extends: VueChartJs.Line,
+        mixins: [VueChartJs.mixins.reactiveProp],
+        props: ['chartData', 'options'],
+        mounted () {
+            this.renderChart(this.chartData, this.options)
+        }
+    })
+
+
+
+    var vm = new Vue({
+        el: '.app',
+
+        data () {
+            return {
+                datacollection: null
+            }
+        },
+        mounted () {
+            this.fillData()
+        },
+        methods: {
+            fillData () {
+                this.datacollection = {
+                    labels: [this.getRandomInt(), this.getRandomInt()],
+                    datasets: [
+                        {
+                            label: 'Data One',
+                            backgroundColor: '#f87979',
+                            data: [this.getRandomInt(), this.getRandomInt()]
+                        }
+                    ]
+                }
+            },
+            getRandomInt () {
+                return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
