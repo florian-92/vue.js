@@ -3,35 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
 </head>
 <body>
 <div class="app">
-    <input type="text" v-model="files"  id="file"  class="custom-file-input"
-           @change="previewFiles" >
+    <line-chart :chart-data="datacollection"></line-chart>
+    <button @click="fillData()">Randomize</button>
+    <input type="text" @input="addEvent" @change="addEvent" />
+    <input type="range" min="0" max="100" @input="addEvent" @change="addEvent" />
+    <ul>
+        <li v-for="event in events">{{ eventText(event) }}</li>
+    </ul>
 </div>
 
 <script>
 
 
 
-
+    Vue.component('line-chart', {
+        extends: VueChartJs.Line,
+        mixins: [VueChartJs.mixins.reactiveProp],
+        props: ['options'],
+        mounted () {
+            // this.chartData is created in the mixin.
+            // If you want to pass options please create a local options object
+            this.renderChart(this.chartData, this.options)
+        }
+    })
 
 
     var vm = new Vue({
         el: '.app',
 
-        data() {
+
+        data () {
             return {
-                files: [],
+                datacollection: null,
+                events: [],
             }
         },
+        mounted () {
+            this.fillData()
+        },
         methods: {
-            previewFiles() {
-                this.files
-                console.log(this.files)
+            fillData () {
+                this.datacollection = {
+                    labels: [this.getRandomInt(), this.getRandomInt()],
+                    datasets: [
+                        {
+                            label: 'Data One',
+                            backgroundColor: '#f87979',
+                            data: [this.getRandomInt(), this.getRandomInt()]
+                        }, {
+                            label: 'Data One',
+                            backgroundColor: '#f87979',
+                            data: [this.getRandomInt(), this.getRandomInt()]
+                        }
+                    ]
+                }
+            },
+            getRandomInt () {
+                this.datacollection
+
+                console.log(datacollection)
+            },
+
+            addEvent ({ type, target }) {
+                const event = {
+                    type,
+                    target: {
+                        value: target.value
+                    }
+                }
+                this.events.push(event)
+            },
+            eventText (e) {
+                return e.target.value
             }
         }
     })
