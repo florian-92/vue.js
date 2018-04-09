@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="92967318-7083-4314-abab-daabb01492b8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fidel.html" beforeDir="false" afterPath="$PROJECT_DIR$/fidel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ok.html" beforeDir="false" afterPath="$PROJECT_DIR$/ok.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/test.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,8 +44,8 @@
       <file leaf-file-name="ok.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ok.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+            <state relative-caret-position="43">
+              <caret line="51" column="44" lean-forward="true" selection-start-line="51" selection-start-column="44" selection-end-line="51" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -147,18 +144,18 @@
       <option name="presentableId" value="Default" />
       <updated>1522999727767</updated>
       <workItem from="1522999730189" duration="15526000" />
-      <workItem from="1523257777012" duration="4223000" />
+      <workItem from="1523257777012" duration="4849000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19749000" />
+    <option name="totallyTimeSpent" value="20375000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="709" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.11631664" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.11631664" />
       <window_info anchor="bottom" id="TODO" order="11" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
@@ -265,8 +262,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ok.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+        <state relative-caret-position="43">
+          <caret line="51" column="44" lean-forward="true" selection-start-line="51" selection-start-column="44" selection-end-line="51" selection-end-column="44" />
         </state>
       </provider>
     </entry>
