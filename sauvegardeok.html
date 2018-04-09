@@ -9,78 +9,58 @@
 </head>
 <body>
 <div class="app">
-    <line-chart :chart-data="datacollection"></line-chart>
-    <input type="text" @input="addEvent" @change="fillData()" />
-    <input type="range" min="0" max="100" @input="addEvent" @change="addEvent" />
-    <ul>
-        <li v-for="event in events">{{ eventText(event) }}</li>
-    </ul>
+    inputData : {{ inputData }} <br />
+    dataChart : {{ dataChart }} <br />
+    <div style='max-width:400px; max-height:400px;'>
+        <line-chart :chart-data="dataChart"></line-chart>
+    </div>
+    <input @change='addValue' />
 </div>
 
 <script>
-
-
-
     Vue.component('line-chart', {
-        extends: VueChartJs.Line,
+        extends: VueChartJs.Bar,
         mixins: [VueChartJs.mixins.reactiveProp],
         props: ['options'],
         mounted () {
-            // this.chartData is created in the mixin.
-            // If you want to pass options please create a local options object
             this.renderChart(this.chartData, this.options)
         }
     })
 
-
     var vm = new Vue({
         el: '.app',
-
-
-        data () {
-            return {
-                datacollection: null,
-                events: [],
+        data: function() {
+            return ({
+                inputData: [
+                ]
+            });
+        },
+        computed: {
+            dataChart: function() {
+                var labels = [];
+                var data = [];
+                for (var key in this.inputData) {
+                    labels.push(key);
+                    data.push(this.inputData[key]);
+                }
+                return ({
+                    labels: labels,
+                    datasets: [ {
+                        label: 'Data One',
+                        backgroundColor: '#f87979',
+                        data: data
+                    } ]
+                });
             }
         },
-        mounted () {
-            this.fillData()
-        },
         methods: {
-            fillData () {
-                this.datacollection = {
-                    labels: [this.getRandomInt(), this.getRandomInt()],
-                    datasets: [
-                        {
-                            label: 'Data One',
-                            backgroundColor: '#f87979',
-                            data: [this.getRandomInt(), this.getRandomInt()]
-                        }, {
-                            label: 'Data One',
-                            backgroundColor: '#f87979',
-                            data: [this.getRandomInt(), this.getRandomInt()]
-                        }
-                    ]
-                }
-            },
-            getRandomInt () {
-                return Math.floor(Math.random() * (50 - 5 + 1)) + 5
-            },
-            addEvent ({ type, target }) {
-                const event = {
-                    type,
-                    target: {
-                        value: target.value
-                    }
-                }
-                this.events.push(event)
-            },
-            eventText (e) {
-                return e.target.value
+            addValue: function(e) {
+                if (typeof e == 'undefined')
+                    return ;
+                this.inputData.push(parseFloat(e.target.value));
             }
         }
     })
-
 </script>
 </body>
 </html>
