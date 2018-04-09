@@ -3,21 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
 </head>
 <body>
 <div class="app">
     <line-chart :chart-data="datacollection"></line-chart>
-    <button @click="fillData()">Randomize</button>
+    <input type="text" @input="addEvent" @change="fillData()" />
+    <input type="range" min="0" max="100" @input="addEvent" @change="addEvent" />
+    <ul>
+        <li v-for="event in events">{{ eventText(event) }}</li>
+    </ul>
 </div>
 
 <script>
 
 
+
     Vue.component('line-chart', {
-        eextends: VueChartJs.Line,
+        extends: VueChartJs.Line,
         mixins: [VueChartJs.mixins.reactiveProp],
         props: ['options'],
         mounted () {
@@ -28,15 +33,14 @@
     })
 
 
-
-
     var vm = new Vue({
         el: '.app',
+
 
         data () {
             return {
                 datacollection: null,
-                files: null,
+                events: [],
             }
         },
         mounted () {
@@ -61,6 +65,18 @@
             },
             getRandomInt () {
                 return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+            },
+            addEvent ({ type, target }) {
+                const event = {
+                    type,
+                    target: {
+                        value: target.value
+                    }
+                }
+                this.events.push(event)
+            },
+            eventText (e) {
+                return e.target.value
             }
         }
     })

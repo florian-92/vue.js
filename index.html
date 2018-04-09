@@ -9,46 +9,22 @@
 </head>
 <body>
 <div class="app">
-    <line-chart :chart-data="datacollection"></line-chart>
-    <button @click="fillData()">Aléatoire</button>
-    {{datacollection}}
-
+    <input type="text" v-model="files"  id="file"  class="custom-file-input"
+           @change="previewFiles" >
 </div>
 
 <script>
-    Vue.component('line-chart', {
-        extends: VueChartJs.Line,
-        mixins: [VueChartJs.mixins.reactiveProp],
-        props: ['chartData', 'options'],
-        mounted () {
-            this.renderChart(this.chartData, this.options)
-        }
-    })
     var vm = new Vue({
         el: '.app',
-        data () {
+        data() {
             return {
-                datacollection: null
+                files: [],
             }
         },
-        mounted () {
-            this.fillData()
-        },
         methods: {
-            fillData () {
-                this.datacollection = {
-                    labels: [this.getRandomInt(), this.getRandomInt()],
-                    datasets: [
-                        {
-                            label: 'Data One',
-                            backgroundColor: '#f87979',
-                            data: [this.getRandomInt(), this.getRandomInt()]
-                        }
-                    ]
-                }
-            },
-            getRandomInt () {
-                return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+            previewFiles() {
+                this.files
+                console.log(this.files)
             }
         }
     })

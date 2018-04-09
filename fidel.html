@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<div id="app">
+    <input type="text" @input="addEvent" @change="addEvent" />
+    <input type="range" value="{{ eventText(event) }}" min="0" max="100" @input="addEvent" @change="addEvent" />
+
+    <ul>
+        <li v-for="event in events">{{ eventText(event) }}</li>
+    </ul>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            events: []
+        },
+        methods: {
+            addEvent ({ type, target }) {
+                const event = {
+                    type,
+                    target: {
+                        value: target.value
+                    }
+                }
+                this.events.push(event)
+            },
+            eventText (e) {
+                return `${e.type}: ${e.target.value}`
+            }
+        }
+    })
+
+</script>

@@ -10,8 +10,7 @@
 <body>
 <div class="app">
     <line-chart :chart-data="datacollection"></line-chart>
-    <button @click="fillData()">Randomize</button>
-    <input type="text" @input="addEvent" @change="addEvent" />
+    <input type="text" @input="addEvent" @change="fillData()" />
     <input type="range" min="0" max="100" @input="addEvent" @change="addEvent" />
     <ul>
         <li v-for="event in events">{{ eventText(event) }}</li>
@@ -49,24 +48,23 @@
         },
         methods: {
             fillData () {
+                console.log('ok')
                 this.datacollection = {
-                    labels: [this.getRandomInt(), this.getRandomInt()],
+                    labels: [this.eventText(), this.eventText()],
                     datasets: [
                         {
                             label: 'Data One',
                             backgroundColor: '#f87979',
-                            data: [this.getRandomInt(), this.getRandomInt()]
+                            data: [this.eventText(), this.eventText()]
                         }, {
                             label: 'Data One',
                             backgroundColor: '#f87979',
-                            data: [this.getRandomInt(), this.getRandomInt()]
+                            data: [this.eventText(), this.eventText()]
                         }
                     ]
                 }
             },
-            getRandomInt () {
-                return Math.floor(Math.random() * (50 - 5 + 1)) + 5
-            },
+
             addEvent ({ type, target }) {
                 const event = {
                     type,
