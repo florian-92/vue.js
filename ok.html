@@ -65,11 +65,8 @@
                 }
             },
             getRandomInt () {
-                this.datacollection
-
-                console.log(datacollection)
+                return Math.floor(Math.random() * (50 - 5 + 1)) + 5
             },
-
             addEvent ({ type, target }) {
                 const event = {
                     type,
