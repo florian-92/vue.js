@@ -20,19 +20,11 @@
     <input @change='addValue2'/>
 <br>
     <input type="range" min="0" max="100"  @change="addValue2" />
-    <h3 class="montserrat" title="Lorem ipsum dolor sit amet">Revenus Locatifs</h3>
-    <div class="col-md-12 marge-basse">
-        <p title="Lorem ipsum dolor sit amet">Loyer mensuel hors charges en € : {{l_Mensuel}}
-        <div class="col-md-3"><input type="text" class="form-control" placeholder="entrer valeur" v-model="l_Mensuel">
-        </div>
-
-        <!--                                     <h4 class="bleu-SCPI" title="Lorem ipsum dolor sit amet">Loyer annuel : {{formatMillier(l_Annuel=(12 * l_Mensuel))}} €</h4>
-     -->
-        </p>
+    <input v-model="l_Mensuel" placeholder="modifiez-moi">
+    <p>Le message est : {{ l_Mensuel }}</p>
 </div>
 
-</div>
-</div>
+
 
 <script>
     Vue.component('line-chart', {
@@ -52,7 +44,9 @@
                 inputData_un: [
                 ],
                 inputData_deux: [
-                ]
+                ],
+                l_Mensuel: 600,
+
 
             });
         },
