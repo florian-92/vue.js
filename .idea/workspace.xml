@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92967318-7083-4314-abab-daabb01492b8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sauvegardeok.html" beforeDir="false" afterPath="$PROJECT_DIR$/sauvegardeok.html" afterDir="false" />
-    </list>
+    <list default="true" id="92967318-7083-4314-abab-daabb01492b8" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,8 +50,8 @@
       <file leaf-file-name="sauvegardeok.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sauvegardeok.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+            <state relative-caret-position="1500">
+              <caret line="100" column="39" lean-forward="true" selection-start-line="100" selection-start-column="39" selection-end-line="100" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -152,16 +149,15 @@
       <option name="presentableId" value="Default" />
       <updated>1522999727767</updated>
       <workItem from="1522999730189" duration="15526000" />
-      <workItem from="1523257777012" duration="19110000" />
+      <workItem from="1523257777012" duration="19425000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34636000" />
+    <option name="totallyTimeSpent" value="34951000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="1" weight="0.11631664" />
       <window_info anchor="bottom" id="TODO" order="11" />
@@ -172,7 +168,7 @@
       <window_info anchor="bottom" id="Version Control" order="4" weight="0.32843137" />
       <window_info anchor="bottom" id="Run" order="7" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="2" weight="0.14482759" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="2" visible="true" weight="0.14482759" />
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
@@ -284,8 +280,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sauvegardeok.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+        <state relative-caret-position="1500">
+          <caret line="100" column="39" lean-forward="true" selection-start-line="100" selection-start-column="39" selection-end-line="100" selection-end-column="39" />
         </state>
       </provider>
     </entry>
