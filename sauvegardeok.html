@@ -9,12 +9,15 @@
 </head>
 <body>
 <div class="app">
-    inputData : {{ inputData }} <br />
+    inputData : {{ inputData_un }} <br />
     dataChart : {{ dataChart }} <br />
     <div style='max-width:400px; max-height:400px;'>
         <line-chart :chart-data="dataChart"></line-chart>
     </div>
-    <input @change='addValue' />
+    <input @change='addValue'/> <br>
+    <input type="range" min="0" max="100"  @change="addValue" />
+<br>
+    <input @change='addValue2'/>
 </div>
 
 <script>
@@ -22,33 +25,46 @@
         extends: VueChartJs.Bar,
         mixins: [VueChartJs.mixins.reactiveProp],
         props: ['options'],
+
         mounted () {
             this.renderChart(this.chartData, this.options)
-        }
+        },
     })
 
     var vm = new Vue({
         el: '.app',
         data: function() {
             return ({
-                inputData: [
+                inputData_un: [
+                ],
+                inputData_deux: [
                 ]
+
             });
         },
         computed: {
             dataChart: function() {
                 var labels = [];
+                var labels2 = [];
                 var data = [];
-                for (var key in this.inputData) {
+                for (var key in this.inputData_un) {
                     labels.push(key);
-                    data.push(this.inputData[key]);
+                    data.push(this.inputData_un[key]);
                 }
+
+                for (var key in this.inputData_deux) {
+                    labels2.push(key);
+
+                    data.push(this.inputData_deux[key]);
+                }
+
                 return ({
-                    labels: labels,
+                    labels:['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+
                     datasets: [ {
                         label: 'Data One',
                         backgroundColor: '#f87979',
-                        data: data
+                        data: data,
                     } ]
                 });
             }
@@ -57,9 +73,37 @@
             addValue: function(e) {
                 if (typeof e == 'undefined')
                     return ;
-                this.inputData.push(parseFloat(e.target.value));
+
+                if (this.inputData_un.length == 0 ) { // si le tableau est vide alors on push
+                    this.inputData_un.push(parseFloat(e.target.value));
+                    console.log('vide')
+
+                }
+
+                if (this.inputData_un.length != 0 ) { // si le tableau est vide alors on push
+                    this.inputData_un.splice(0,1,parseFloat(e.target.value));
+                    console.log('plein')
+                }
+
+
+            },
+
+            addValue2(e) {
+                if (this.inputData_deux.length == 0 ) { // si le tableau est vide alors on push
+                    this.inputData_deux.push(parseFloat(e.target.value));
+                    console.log('vide')
+
+                }
+
+                if (this.inputData_deux.length != 0 ) { // si le tableau est vide alors on push
+                    this.inputData_deux.splice(0,1,parseFloat(e.target.value));
+                    console.log('plein')
+                }
+
             }
-        }
+        },
+
+
     })
 </script>
 </body>
