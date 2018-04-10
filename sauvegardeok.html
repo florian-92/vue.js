@@ -9,18 +9,15 @@
 </head>
 <body>
 <div class="app">
-    inputData : {{ inputData_un }} <br />
-    dataChart : {{ dataChart }} <br />
     <div style='max-width:400px; max-height:400px;'>
-        <line-chart :chart-data="dataChart"></line-chart>
+        <line-chart :chart-data="dataChart" :options="opt"></line-chart>
     </div>
-    <input @change='addValue'/> <br>
-    <input type="range" min="0" max="100"  @change="addValue" />
+    <input v-model.lazy="revenue_locatif"/> <br>
+    <input v-model.lazy="revenue_locatif" type="range" min="0" max="100"  />
 <br>
-    <input @change='addValue2'/>
+    <input v-model.lazy="charge_non_recuperable"/> <br>
 <br>
-    <input type="text" v-model="msg">
-    {{msg}}
+
 
 </div>
 
@@ -41,73 +38,48 @@
         el: '.app',
         data: function() {
             return ({
-                inputData_un: [
-                ],
-                inputData_deux: [
-                ], msg: 3,
+                revenue_locatif:'98',
+                charge_non_recuperable : '76',
+                opt: {
 
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Simulateur '
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                },
 
             });
         },
         computed: {
             dataChart: function() {
-                var labels = [];
-                var data = [];
-                for (var key in this.inputData_un) {
-                    labels.push('data3');
-                    data.push(this.inputData_un[key]);
-                }
-
-                for (var key in this.inputData_deux) {
-                    labels.push('dataë');
-
-                    data.push(this.inputData_deux[key]);
-                }
+                var data1 = [this.revenue_locatif];
+                var data2 = [this.charge_non_recuperable]
 
                 return ({
-                    labels:labels,
+                    labels:["Revenu locatif","charge non récupérable"],
 
                     datasets: [ {
-                        label: 'Data One',
-                        backgroundColor: '#f87979',
-                        data: data,
-                    } ]
+                        label: ["Revenu locatif"],
+                        backgroundColor: ["#8e5ea2"],
+                        data: data1,
+                    },{
+
+                        label: ["charge non récupérable"],
+                        backgroundColor: ["#3e95cd"],
+                        data: data2,
+                    }]
                 });
             }
         },
-        methods: {
-            addValue: function(e) {
-                if (typeof e == 'undefined')
-                    return ;
 
-                if (this.inputData_un.length == 0 ) { // si le tableau est vide alors on push
-                    this.inputData_un.push(parseFloat(e.target.value));
-                    console.log('vide')
-
-                }
-
-                if (this.inputData_un.length != 0 ) { // si le tableau est remplie alors on remplace
-                    this.inputData_un.splice(0,1,parseFloat(e.target.value));
-                    console.log('plein')
-                }
-
-
-            },
-
-            addValue2: function(e) {
-                if (this.inputData_deux.length == 0 ) { // si le tableau est vide alors on push
-                    this.inputData_deux.push(parseFloat(e.target.value));
-                    console.log('vide')
-
-                }
-
-                if (this.inputData_deux.length != 0 ) { // si le tableau est remplie alors on remplace
-                    this.inputData_deux.splice(0,1,parseFloat(e.target.value));
-                    console.log('plein')
-                }
-
-            }
-        },
 
 
     })
