@@ -12,12 +12,58 @@
     <div style='max-width:400px; max-height:400px;'>
         <line-chart :chart-data="dataChart" :options="opt"></line-chart>
     </div>
-    <input v-model.lazy="revenue_locatif"/> <br>
+    <h1>Revenus Locatifs</h1>
+
+
+        <h3 class="montserrat" title="Lorem ipsum dolor sit amet">Revenus Locatifs</h3>
+            <p title="Lorem ipsum dolor sit amet">Loyer mensuel hors charges en € :<div class="col-md-3">
+    <input type="text" class="form-control aligner-droite" placeholder="entrer valeur" v-model="l_Mensuel">
+</div></p>
+            <input v-model="l_Mensuel" min="0" max="10000" ></input>
+
+        <br>
+        <h4 class="bleu-SCPI" title="Lorem ipsum dolor sit amet">Loyer annuel : {{formatMillier(l_Annuel=(12 * l_Mensuel))}} €</h4>
+
+    <h3 class="montserrat" title="Lorem ipsum dolor sit amet">Charges non récupérables</h3>
+
+    <div class="col-md-12 marge-basse">
+        <p title="Lorem ipsum dolor sit amet">Charges annuelles non récupérables auprès des locataires en € :<div class="col-md-3">
+        <input type="text" class="form-control aligner-droite" placeholder="entrer valeur" v-model="c_n_Recup_Loca"></div></p>
+        <input  type="range"  v-model="c_n_Recup_Loca" min="0" max="6000" ></input>
+
+    </div><br>
+    <div class="col-md-12 marge-basse">
+        <p title="Lorem ipsum dolor sit amet">Taxe foncière annuelle (estimé à un loyer mensuel) en € : <div class="col-md-3"><input type="text" class="form-control aligner-droite" placeholder="entrer valeur" v-model="t_Fonc"></div></p>
+        <input  type="range"  v-model="t_Fonc" min="0" max="6000" ></input>
+    </div>
+    <h4 class="bleu-SCPI" title="Lorem ipsum dolor sit amet">Revenus nets de toutes les charges et frais hors fiscalité : {{formatMillier(r_Nets=l_Annuel-t_Fonc-c_n_Recup_Loca)}} €</h4>
+
+<h3 class="montserrat" title="Lorem ipsum dolor sit amet">Investissement</h3>
+
+<div class="col-md-12 marge-basse">
+    <p title="Lorem ipsum dolor sit amet">Montant d’investissement du bien (hors droits hors agence hors frais de notaire) en € : <div class="col-md-3">
+    <input type="text" class="form-control aligner-droite" placeholder="entrer valeur" v-model="m_Invest_Bien"></div> </p>
+    <input type="range"  v-model="m_Invest_Bien" min="0" max="1000000" ></input>
+</div><br>
+
+
+<div class="col-md-12 marge-basse">
+    <p title="Lorem ipsum dolor sit amet">Frais d’agence en € : <div class="col-md-3"><input type="text" class="form-control aligner-droite" placeholder="entrer valeur" v-model="f_Agence"></div></p>
+    <input type="range"  v-model="f_Agence" min="0" max="1000000" ></input>
+
+</div><br>
+
+<div class="col-md-12 marge-basse">
+    <p title="Lorem ipsum dolor sit amet">Droits d’enregistrements et notaires I Frais de souscription (estimé en moyenne) en € :<div class="col-md-3"><input type="text" class="form-control aligner-droite" placeholder="entrer valeur" v-model="d_Enreg_Not"></div></p>
+    <input type="range"  v-model="d_Enreg_Not" min="0" max="1000000" ></input>
+</div>
+<h4 class="bleu-SCPI" title="Lorem ipsum dolor sit amet">Montant de l'investissement : {{formatMillier(m_Investissement=(d_Enreg_Not + f_Agence+m_Invest_Bien))}} €</h4>
+
+   <!-- <input v-model.lazy="revenue_locatif"/> <br>
     <input v-model.lazy="revenue_locatif" type="range" min="0" max="100"  />
 <br>
     <input v-model.lazy="charge_non_recuperable"/> <br>
-<br>
-
+<br> -->
 
 </div>
 
@@ -55,6 +101,17 @@
                         }]
                     }
                 },
+                l_Mensuel: 600,
+                l_Annuel: 0,
+                c_n_Recup: 915,
+                t_Fonc: 600,
+                c_n_Recup_Loca: 1000,
+                r_Nets: 0,
+                m_Invest_Bien: 110000,
+                f_Agence:4000,
+                d_Enreg_Not:7000,
+                m_Investissement: 0,
+                rendement: 0
 
             });
         },
@@ -79,6 +136,29 @@
                 });
             }
         },
+        methods: {
+            change: function(value) {
+                console.log(value)
+            },
+            formatMillier: function(nombre){
+                nombre += '';
+                var sep = ' ';
+                var reg = /(\d+)(\d{3})/;
+                while( reg.test( nombre)) {
+                    nombre = nombre.replace( reg, '$1' +sep +'$2');
+                }
+                return nombre;
+            }
+        },
+        filters: {
+            pourcentage: function (valeur, decimales) {
+                if (decimales === undefined) {
+                    decimales = 2;
+                }
+                return Math.round(valeur * Math.pow(10, decimales)) / Math.pow(10, decimales) + ' %';
+            }
+
+        }
 
 
 
