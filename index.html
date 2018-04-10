@@ -8,26 +8,25 @@
     <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
 </head>
 <body>
-<div class="app">
-    <input type="text" v-model="files"  id="file"  class="custom-file-input"
-           @change="previewFiles" >
-</div>
+<form id="demo">
+    <!-- text -->
+    <p>
+        <input type="text" v-model="msg">
+        {{msg}}
+    </p>
+
+    </p>
+    <p><pre>data: {{$data | json 2}}</pre></p>
+</form>
 
 <script>
-    var vm = new Vue({
-        el: '.app',
-        data() {
-            return {
-                files: [],
-            }
-        },
-        methods: {
-            previewFiles() {
-                this.files
-                console.log(this.files)
-            }
+    new Vue({
+        el: '#demo',
+        data: {
+            msg      : 'hi!',
         }
     })
+
 </script>
 </body>
 </html>

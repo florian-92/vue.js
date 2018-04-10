@@ -19,9 +19,9 @@
 <br>
     <input @change='addValue2'/>
 <br>
-    <input type="range" min="0" max="100"  @change="addValue2" />
-    <input v-model="l_Mensuel" placeholder="modifiez-moi">
-    <p>Le message est : {{ l_Mensuel }}</p>
+    <input type="text" v-model="msg">
+    {{msg}}
+
 </div>
 
 
@@ -44,8 +44,7 @@
                 inputData_un: [
                 ],
                 inputData_deux: [
-                ],
-                l_Mensuel: 600,
+                ], msg: 3,
 
 
             });
@@ -87,7 +86,7 @@
 
                 }
 
-                if (this.inputData_un.length != 0 ) { // si le tableau est vide alors on push
+                if (this.inputData_un.length != 0 ) { // si le tableau est remplie alors on remplace
                     this.inputData_un.splice(0,1,parseFloat(e.target.value));
                     console.log('plein')
                 }
@@ -102,7 +101,7 @@
 
                 }
 
-                if (this.inputData_deux.length != 0 ) { // si le tableau est vide alors on push
+                if (this.inputData_deux.length != 0 ) { // si le tableau est remplie alors on remplace
                     this.inputData_deux.splice(0,1,parseFloat(e.target.value));
                     console.log('plein')
                 }
